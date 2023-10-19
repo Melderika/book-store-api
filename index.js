@@ -2,29 +2,25 @@ const express = require('express')
 const app = express()
 const port = 5151
 
-// app.get('/',(req,res) =>{
-//     res.send("Hello ini express")
-// })
+ // representasi data dari database
+ const data_users = [
+    { id: 1, name: "Kamelia", alamat: "Bandung" },
+    { id: 2, name: "Syalamah", alamat: "Bandung" },
+    { id: 3, name: "Dini", alamat: "Jogja" },
+    { id: 4, name: "Saskia", alamat: "Sumedang" },
+];
 
-// app.get('/',(req,res) =>{
-//     res.send("Hello ini lalalal")
-// })
+app.get("/nama", (req, res) => {
+    //mendapatkan data dari database
+    const data = data_users;
 
-app.get('/popice',(req,res) =>{
-    res.send("Hello ini pop ice coklat")
-})
+    //memberikan respon json data
+    let result = {
+        status: 200,
+        data: data,
+    };
 
-app.post('/popice',(req,res) =>{
-    res.send("Hello ini pop ice melon")
-})
-
-app.put('/popice',(req,res) =>{
-    res.send("Hello ini pop ice anggur")
-})
-
-app.delete('/popice',(req,res) =>{
-    res.send("Hello ini pop ice sudah habis")
-})
-
+    res.json(result);
+});
 
 app.listen(port,() => console.log(`Server running on port ${port}`))
